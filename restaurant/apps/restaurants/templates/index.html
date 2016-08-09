@@ -49,10 +49,9 @@
 				      <div class="input-group-btn">
 				        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Elije ciudad <span class="caret"></span></button>
 				        <ul class="dropdown-menu">
-				          <li><a href="#">Trujillo</a></li>
-				          <li><a href="#">Lima</a></li>
-				          <li><a href="#">Chiclayo</a></li>
-				          <li><a href="#">Cuzco</a></li>
+				        	{% for city in cities %}
+				        		<li><a href="#">{{ city.name }}</a></li>
+				        	{% endfor %}
 				        </ul>
 				      </div><!-- /btn-group -->
 				      <input type="text" class="form-control" aria-label="..." placeholder="Encuentra tu restaurante favorita">
@@ -69,21 +68,13 @@
 								<input type="checkbox"> Todo
 							</label>							
 						</div>
-						<div class="checkbox">
-							<label for="">
-								<input type="checkbox"> Criolla
-							</label>							
-						</div>
-						<div class="checkbox">
-							<label for="">
-								<input type="checkbox"> Mariscos
-							</label>							
-						</div>
-						<div class="checkbox">
-							<label for="">
-								<input type="checkbox"> Chifa
-							</label>							
-						</div>
+						{% for category in categories %}
+							<div class="checkbox">
+								<label for="">
+									<input type="checkbox"> {{ category.name }}
+								</label>							
+							</div>
+						{% endfor %}
 					</div>
 					<div class="form-group">
 						<label for="">Formas de Pago</label>
@@ -92,56 +83,35 @@
 								<input type="checkbox"> Todo
 							</label>							
 						</div>
-						<div class="checkbox">
-							<label for="">
-								<input type="checkbox"> Efectivo
-							</label>							
-						</div>
-						<div class="checkbox">
-							<label for="">
-								<input type="checkbox"> Visa
-							</label>							
-						</div>
-						<div class="checkbox">
-							<label for="">
-								<input type="checkbox"> MasterCard
-							</label>							
-						</div>
+						{% for payment in payments %}
+							<div class="checkbox">
+								<label for="">
+									<input type="checkbox"> {{ payment.pay }}
+								</label>							
+							</div>
+						{% endfor %}
 					</div>
 				</div>
 	        	<div class="col-sm-9">
+	        	{% for restaurante, tips in restaurants %}
 	        		<div class="list-group">
 	        			<a class="list-group-item">
 	        				<div class="col-sm-3">
-	        					<img src="http://placehold.it/350x250" class="media-object img-rounded img-responsive" alt="">
+	        					<img src="{{ restaurante.imagen.url }}" class="media-object img-rounded img-responsive" alt="">
 	        				</div>
 	        				<div class="col-sm-6">
-	        					<h3>El Mochica</h3>
-	        					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	        					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+	        					<h3>{{ restaurante.name }}</h3>
+	        					<p>{{ restaurante.description }}</p>
 	        				</div>
 	        				<div class="col-sm-3 text-center">
-	        					<h2>4 <small>tips</small></h2>
+	        					<h2>{{ tips }} <small>tips</small></h2>
 	        					<button type="button" class="btn btn-primary btn-lg btn-block">Ver detalle</button>
 	        				</div>
 	        			</a>
 	        		</div>
-	        		<div class="list-group">
-	        			<a class="list-group-item">
-	        				<div class="col-sm-3">
-	        					<img src="http://placehold.it/350x250" class="media-object img-rounded img-responsive" alt="">
-	        				</div>
-	        				<div class="col-sm-6">
-	        					<h3>El Mochica</h3>
-	        					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	        					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-	        				</div>
-	        				<div class="col-sm-3 text-center">
-	        					<h2>4 <small>tips</small></h2>
-	        					<button type="button" class="btn btn-primary btn-lg btn-block">Ver detalle</button>
-	        				</div>
-	        			</a>
-	        		</div>
+
+	        		
+	        	{% endfor %}
 	        	</div>
         	</div>
         </div>
