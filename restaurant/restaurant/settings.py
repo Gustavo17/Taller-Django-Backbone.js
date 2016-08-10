@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.restaurants',
+    'social.apps.django_app.default',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,16 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
+
+AUTHENTICATION_BACKENDS = (
+    # Facebook
+    'social.backends.facebook.FacebookAppOAuth2',
+    'social.backends.facebook.FacebookOAuth2',
+    # Django
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '278666722513596'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'ef63eff7abae917ed3e0a48a861c188c'

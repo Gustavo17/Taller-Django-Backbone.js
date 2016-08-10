@@ -20,7 +20,12 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
+from apps.restaurants.views import LogOut
+
 urlpatterns = [
 	url(r'', include('apps.restaurants.urls')),
+	# Python Social Auth URLs
+	url('', include('social.apps.django_app.urls', namespace='social')),
+	url(r'^salir/$', LogOut),
     url(r'^admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

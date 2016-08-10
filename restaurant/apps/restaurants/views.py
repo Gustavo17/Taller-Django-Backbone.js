@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import logout
 from django.views.generic import TemplateView
 from .models import Category, Payment, City, Restaurant
 
@@ -15,3 +16,8 @@ class IndexView(TemplateView):
 		tips = [restaurant.tip_set.all().count() for restaurant in restaurants]
 		context['restaurants'] = zip(restaurants, tips)
 		return context
+
+
+def LogOut(request):
+	logout(request)
+	return redirect('/')
